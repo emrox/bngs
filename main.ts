@@ -8,6 +8,10 @@ for (const importBang of importBangFile) {
 
 const bangRegex = new RegExp(`!([^\\s]+)`)
 
+const defaultRedirect = (searchQuery: string) => {
+  return `https://www.ecosia.org/search?q=${encodeURI(searchQuery)}`
+}
+
 const app = new Hono()
 
 app.get('/', (c) => {
@@ -18,18 +22,18 @@ app.get('/', (c) => {
   }
 
   if (!searchQuery.includes('!')) {
-    return c.redirect(`https://www.ecosia.org/search?q=${encodeURI(searchQuery)}`)
+    return c.redirect(defaultRedirect(searchQuery))
   }
 
   const bangMatch = searchQuery.match(bangRegex)
   if (!bangMatch) {
-    return c.redirect(`https://www.ecosia.org/search?q=${encodeURI(searchQuery)}`)
+    return c.redirect(defaultRedirect(searchQuery))
   }
 
   const bang = bangMatch[1]
   const bangUrl = bangs[bang]
   if (!bangUrl) {
-    return c.redirect(`https://www.ecosia.org/search?q=${encodeURI(searchQuery)}`)
+    return c.redirect(defaultRedirect(searchQuery))
   }
 
   const bangSearchQuery = searchQuery.replace(`!${bang}`, '').trim()
