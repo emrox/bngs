@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { secureHeaders } from 'hono/secure-headers'
 
 import importBangFile from "./bang.json" with { type: "json" };
 const bangs: Record<string, string> = {};
@@ -13,6 +14,11 @@ const defaultRedirect = (searchQuery: string) => {
 }
 
 const app = new Hono()
+app.use(secureHeaders(
+  {
+    xFrameOptions: "DENY",
+  }
+))
 
 app.get('/', (c) => {
   const searchQuery = c.req.query('q')
