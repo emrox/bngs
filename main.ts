@@ -1,11 +1,7 @@
 import { Hono } from 'hono'
 import { secureHeaders } from 'hono/secure-headers'
-
-import importBangFile from "./bang.json" with { type: "json" };
-const bangs: Record<string, string> = {};
-for (const importBang of importBangFile) {
-  bangs[importBang.t] = importBang.u
-}
+import rawBngs from '@data/bngs.json' with { type: "json" }
+const bngs: Record<string, string> = rawBngs // The import is not typed, so we work around it and add typing here
 
 const bangRegex = new RegExp(`!([^\\s]+)`)
 
@@ -37,7 +33,7 @@ app.get('/', (c) => {
   }
 
   const bang = bangMatch[1]
-  const bangUrl = bangs[bang]
+  const bangUrl = bngs[bang]
   if (!bangUrl) {
     return c.redirect(defaultRedirect(searchQuery))
   }

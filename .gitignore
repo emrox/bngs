@@ -1,2 +1,3 @@
 *.log
-bang.json
+data/bang.js
+data/bngs.json
