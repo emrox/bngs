@@ -17,6 +17,18 @@ app.use(secureHeaders(
 ))
 
 app.get('/', (c) => {
+  return c.text(`
+    Simple bangs. Just use \`/search?q=!bang search query\` as custom search engine.
+    Compatible with DuckDuckGo's bangs (as of March 2025)
+
+    Default search fallback to Ecosia. (customisation planed for the future)
+
+    No logging, no tracking, no ads.
+    No cookies by default. (some may be required for upcoming features)
+  `)
+})
+
+app.get('/search', (c) => {
   const searchQuery = c.req.query('q')
 
   if (!searchQuery) {
