@@ -1,5 +1,7 @@
 import { Hono } from 'hono'
+import { serveStatic } from 'hono/deno'
 import { secureHeaders } from 'hono/secure-headers'
+
 import rawBngs from '@data/bngs.json' with { type: "json" }
 const bngs: Record<string, string> = rawBngs // The import is not typed, so we work around it and add typing here
 
@@ -15,18 +17,6 @@ app.use(secureHeaders(
     xFrameOptions: "DENY",
   }
 ))
-
-app.get('/', (c) => {
-  return c.text(`
-    Simple bangs. Just use \`/search?q=!bang search query\` as custom search engine.
-    Compatible with DuckDuckGo's bangs (as of March 2025)
-
-    Default search fallback to Ecosia. (customisation planed for the future)
-
-    No logging, no tracking, no ads.
-    No cookies by default. (some may be required for upcoming features)
-  `)
-})
 
 app.get('/search', (c) => {
   const searchQuery = c.req.query('q')
@@ -53,5 +43,7 @@ app.get('/search', (c) => {
   const bangSearchQuery = searchQuery.replace(`!${bang}`, '').trim()
   return c.redirect(bangUrl.replace('{{{s}}}', encodeURI(bangSearchQuery)))
 })
+
+app.use('*', serveStatic({ root: './static/' }))
 
 Deno.serve(app.fetch)
