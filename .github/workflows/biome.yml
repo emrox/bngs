@@ -1,0 +1,22 @@
+# This workflow runs Biome on push to main and on pull requests
+name: Biome Lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    # Run on all PRs, not just those targeting main
+    types: [opened, push, synchronize, reopened, ready_for_review]
+
+jobs:
+  biome:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Biome CLI
+        uses: biomejs/setup-biome@v2
+        with:
+          version: latest
+      - name: Run Biome
+        run: biome ci .

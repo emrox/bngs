@@ -1,10 +1,13 @@
 {
   "imports": {
+    "@biomejs/biome": "npm:@biomejs/biome@^2.1.2",
     "hono": "jsr:@hono/hono@^4.8.5",
     "@data/": "./data/"
   },
   "tasks": {
     "dev": "deno run --allow-net --allow-read --watch=main.ts main.ts",
+    "lint": "biome check",
+    "lint:write": "biome check --write",
     "serve": "deno run --allow-net --allow-read main.ts",
     "prepareBangs": "deno run --allow-read --allow-write --unstable tasks/prepareBangs.ts"
   },

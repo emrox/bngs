@@ -1,16 +1,59 @@
 {
   "version": "4",
   "specifiers": {
-    "jsr:@hono/hono@^4.8.5": "4.8.5"
+    "jsr:@hono/hono@^4.8.5": "4.8.5",
+    "npm:@biomejs/biome@*": "2.1.2",
+    "npm:@biomejs/biome@2.1.2": "2.1.2",
+    "npm:@biomejs/biome@^2.1.2": "2.1.2"
   },
   "jsr": {
     "@hono/hono@4.8.5": {
       "integrity": "78f72e532f378e379915a7e1ae7bd8a171b02324bd37b70877fd35375e8c2d6b"
     }
   },
+  "npm": {
+    "@biomejs/biome@2.1.2": {
+      "integrity": "sha512-yq8ZZuKuBVDgAS76LWCfFKHSYIAgqkxVB3mGVVpOe2vSkUTs7xG46zXZeNPRNVjiJuw0SZ3+J2rXiYx0RUpfGg==",
+      "dependencies": [
+        "@biomejs/cli-darwin-arm64",
+        "@biomejs/cli-darwin-x64",
+        "@biomejs/cli-linux-arm64",
+        "@biomejs/cli-linux-arm64-musl",
+        "@biomejs/cli-linux-x64",
+        "@biomejs/cli-linux-x64-musl",
+        "@biomejs/cli-win32-arm64",
+        "@biomejs/cli-win32-x64"
+      ]
+    },
+    "@biomejs/cli-darwin-arm64@2.1.2": {
+      "integrity": "sha512-leFAks64PEIjc7MY/cLjE8u5OcfBKkcDB0szxsWUB4aDfemBep1WVKt0qrEyqZBOW8LPHzrFMyDl3FhuuA0E7g=="
+    },
+    "@biomejs/cli-darwin-x64@2.1.2": {
+      "integrity": "sha512-Nmmv7wRX5Nj7lGmz0FjnWdflJg4zii8Ivruas6PBKzw5SJX/q+Zh2RfnO+bBnuKLXpj8kiI2x2X12otpH6a32A=="
+    },
+    "@biomejs/cli-linux-arm64-musl@2.1.2": {
+      "integrity": "sha512-qgHvafhjH7Oca114FdOScmIKf1DlXT1LqbOrrbR30kQDLFPEOpBG0uzx6MhmsrmhGiCFCr2obDamu+czk+X0HQ=="
+    },
+    "@biomejs/cli-linux-arm64@2.1.2": {
+      "integrity": "sha512-NWNy2Diocav61HZiv2enTQykbPP/KrA/baS7JsLSojC7Xxh2nl9IczuvE5UID7+ksRy2e7yH7klm/WkA72G1dw=="
+    },
+    "@biomejs/cli-linux-x64-musl@2.1.2": {
+      "integrity": "sha512-xlB3mU14ZUa3wzLtXfmk2IMOGL+S0aHFhSix/nssWS/2XlD27q+S6f0dlQ8WOCbYoXcuz8BCM7rCn2lxdTrlQA=="
+    },
+    "@biomejs/cli-linux-x64@2.1.2": {
+      "integrity": "sha512-Km/UYeVowygTjpX6sGBzlizjakLoMQkxWbruVZSNE6osuSI63i4uCeIL+6q2AJlD3dxoiBJX70dn1enjQnQqwA=="
+    },
+    "@biomejs/cli-win32-arm64@2.1.2": {
+      "integrity": "sha512-G8KWZli5ASOXA3yUQgx+M4pZRv3ND16h77UsdunUL17uYpcL/UC7RkWTdkfvMQvogVsAuz5JUcBDjgZHXxlKoA=="
+    },
+    "@biomejs/cli-win32-x64@2.1.2": {
+      "integrity": "sha512-9zajnk59PMpjBkty3bK2IrjUsUHvqe9HWwyAWQBjGLE7MIBjbX2vwv1XPEhmO2RRuGoTkVx3WCanHrjAytICLA=="
+    }
+  },
   "workspace": {
     "dependencies": [
-      "jsr:@hono/hono@^4.8.5"
+      "jsr:@hono/hono@^4.8.5",
+      "npm:@biomejs/biome@^2.1.2"
     ]
   }
 }

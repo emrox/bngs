@@ -1,22 +1,22 @@
+import rawBngs from '@data/bngs.json' with { type: 'json' }
 import { Hono } from 'hono'
 import { serveStatic } from 'hono/deno'
 import { secureHeaders } from 'hono/secure-headers'
 
-import rawBngs from '@data/bngs.json' with { type: "json" }
 const bngs: Record<string, string> = rawBngs // The import is not typed, so we work around it and add typing here
 
-const bangRegex = new RegExp(`!([^\\s]+)`)
+const bangRegex = /!([^\s]+)/
 
 const defaultRedirect = (searchQuery: string) => {
   return `https://www.ecosia.org/search?q=${encodeURI(searchQuery)}`
 }
 
 const app = new Hono()
-app.use(secureHeaders(
-  {
-    xFrameOptions: "DENY",
-  }
-))
+app.use(
+  secureHeaders({
+    xFrameOptions: 'DENY',
+  }),
+)
 
 app.get('/search', (c) => {
   const searchQuery = c.req.query('q')
